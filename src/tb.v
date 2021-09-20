@@ -1,5 +1,9 @@
 `timescale 1ns/1ps
 module tb;
+  // 导出波形（如果不添加此命令，则无法通过 Verdi 查看波形）
+  initial begin
+    $fsdbDumpvars();
+  end
 
   // 生成时钟激励
   reg clk;
@@ -30,11 +34,5 @@ module tb;
 
   // 待测模块
   adder dut(.clk(clk), .in1(a), .in2(b), .out(c));
-
-  // 导出波形
-  initial begin
-    $fsdbDumpfile("wave.fsdb");
-    $fsdbDumpvars();
-  end
 
 endmodule
