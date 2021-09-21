@@ -1,16 +1,17 @@
 `timescale 1ns/1ps
 module tb;
-  // 导出波形（如果不添加此命令，则无法通过 Verdi 查看波形）
+  // Dump waveform to file (it would be impossible to view wavefrom without
+  // this task)
   initial begin
     $fsdbDumpvars();
   end
 
-  // 生成时钟激励
+  // Generate clock
   reg clk;
   initial clk = 0;
   always #10 clk = ~clk;
 
-  // 生成输入
+  // Input registers
   reg [31:0] a, b;
   wire [31:0] c;
 
@@ -28,11 +29,11 @@ module tb;
     $display("%d + %d = %d\n", a, b, c);
 
     #20;
-    // 结束仿真
+    // Exit the simulation
     $finish;
   end
 
-  // 待测模块
+  // Device under test (our adder)
   adder dut(.clk(clk), .in1(a), .in2(b), .out(c));
 
 endmodule
