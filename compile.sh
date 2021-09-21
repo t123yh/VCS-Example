@@ -5,4 +5,5 @@
 # -o sim/simv: 输出文件路径
 # -fsdb: 输出 fsdb 波形文件需要指定此选项
 # -kdb: 生成源代码数据库文件，供 Verdi 显示源代码使用
-vcs -full64 src/*.v -o sim/simv -fsdb -kdb
+# -q: 减少日志数量（安静模式）
+vcs -full64 src/*.v -o sim/simv -fsdb -kdb -q
